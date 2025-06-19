@@ -1,5 +1,3 @@
-
-import { Destination } from '../data/mockData';
 import DestinationCard from './DestinationCard';
 
 const DestinationGrid = ({ destinations, loading = false }) => {
