@@ -10,19 +10,35 @@ import { destinations } from '../data/mockData';
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedRating, setSelectedRating] = useState(0);
+  const [selectedCity, setSelectedCity] = useState('mumbai');
 
   // Filter destinations based on selected criteria
   const filteredDestinations = useMemo(() => {
     return destinations.filter((destination) => {
       const categoryMatch = selectedCategory === 'all' || destination.category === selectedCategory;
       const ratingMatch = destination.rating >= selectedRating;
-      return categoryMatch && ratingMatch;
+      const cityMatch = destination.city === selectedCity;
+      return categoryMatch && ratingMatch && cityMatch;
     });
-  }, [selectedCategory, selectedRating]);
+  }, [selectedCategory, selectedRating, selectedCity]);
+
+  const getCityName = (cityId: string) => {
+    const cityNames: { [key: string]: string } = {
+      mumbai: 'Mumbai',
+      delhi: 'Delhi',
+      bangalore: 'Bangalore',
+      kolkata: 'Kolkata',
+      chennai: 'Chennai',
+      hyderabad: 'Hyderabad',
+      pune: 'Pune',
+      jaipur: 'Jaipur'
+    };
+    return cityNames[cityId] || 'Mumbai';
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
+      <Header selectedCity={selectedCity} onCityChange={setSelectedCity} />
       <HeroSection />
       <FilterBar
         selectedCategory={selectedCategory}
@@ -33,10 +49,10 @@ const Index = () => {
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-6">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
-            {selectedCategory === 'all' ? 'All Destinations' : `${selectedCategory} Destinations`}
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            {selectedCategory === 'all' ? `All Destinations in ${getCityName(selectedCity)}` : `${selectedCategory} in ${getCityName(selectedCity)}`}
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-400">
             {filteredDestinations.length} destination{filteredDestinations.length !== 1 ? 's' : ''} found
             {selectedRating > 0 && ` with ${selectedRating}+ star rating`}
           </p>
