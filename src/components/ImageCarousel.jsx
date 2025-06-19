@@ -2,12 +2,7 @@
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-interface ImageCarouselProps {
-  images: string[];
-  alt: string;
-}
-
-const ImageCarousel = ({ images, alt }: ImageCarouselProps) => {
+const ImageCarousel = ({ images, alt }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextImage = () => {
