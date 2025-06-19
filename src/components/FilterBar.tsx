@@ -2,10 +2,17 @@
 import { Filter, Star } from 'lucide-react';
 import { categories } from '../data/mockData';
 
-const FilterBar = ({ selectedCategory, onCategoryChange, selectedRating, onRatingChange }) => {
+interface FilterBarProps {
+  selectedCategory: string;
+  onCategoryChange: (category: string) => void;
+  selectedRating: number;
+  onRatingChange: (rating: number) => void;
+}
+
+const FilterBar = ({ selectedCategory, onCategoryChange, selectedRating, onRatingChange }: FilterBarProps) => {
   const ratings = [0, 4.0, 4.5, 4.8];
 
-  const getCategoryIcon = (categoryValue) => {
+  const getCategoryIcon = (categoryValue: string) => {
     const icons = {
       all: '🌟',
       Food: '🍽️',
@@ -14,7 +21,7 @@ const FilterBar = ({ selectedCategory, onCategoryChange, selectedRating, onRatin
       Shopping: '🛍️',
       Entertainment: '🎭'
     };
-    return icons[categoryValue] || '📍';
+    return icons[categoryValue as keyof typeof icons] || '📍';
   };
 
   return (

@@ -1,6 +1,13 @@
+
+import { Destination } from '../data/mockData';
 import DestinationCard from './DestinationCard';
 
-const DestinationGrid = ({ destinations, loading = false }) => {
+interface DestinationGridProps {
+  destinations: Destination[];
+  loading?: boolean;
+}
+
+const DestinationGrid = ({ destinations, loading = false }: DestinationGridProps) => {
   if (loading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

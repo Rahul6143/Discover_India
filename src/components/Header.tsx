@@ -3,7 +3,12 @@ import { MapPin, Search } from 'lucide-react';
 import CitySelector from './CitySelector';
 import ThemeToggle from './ThemeToggle';
 
-const Header = ({ selectedCity, onCityChange }) => {
+interface HeaderProps {
+  selectedCity: string;
+  onCityChange: (cityId: string) => void;
+}
+
+const Header = ({ selectedCity, onCityChange }: HeaderProps) => {
   return (
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

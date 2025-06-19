@@ -22,8 +22,8 @@ const Index = () => {
     });
   }, [selectedCategory, selectedRating, selectedCity]);
 
-  const getCityName = (cityId) => {
-    const cityNames = {
+  const getCityName = (cityId: string) => {
+    const cityNames: { [key: string]: string } = {
       mumbai: 'Mumbai',
       delhi: 'Delhi',
       bangalore: 'Bangalore',

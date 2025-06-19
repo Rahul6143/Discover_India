@@ -2,7 +2,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 
-const cities = [
+interface City {
+  id: string;
+  name: string;
+  logo: string;
+}
+
+const cities: City[] = [
   { id: 'mumbai', name: 'Mumbai', logo: '🏙️' },
   { id: 'delhi', name: 'Delhi', logo: '🏛️' },
   { id: 'bangalore', name: 'Bangalore', logo: '🌆' },
@@ -13,14 +19,19 @@ const cities = [
   { id: 'jaipur', name: 'Jaipur', logo: '👑' }
 ];
 
-const CitySelector = ({ selectedCity, onCityChange }) => {
+interface CitySelectorProps {
+  selectedCity: string;
+  onCityChange: (cityId: string) => void;
+}
+
+const CitySelector = ({ selectedCity, onCityChange }: CitySelectorProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const currentCity = cities.find(city => city.id === selectedCity) || cities[0];
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
