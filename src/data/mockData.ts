@@ -11,7 +11,17 @@ export interface Destination {
   city: string;
   price: string;
   timings: string;
+  highlights: string[];
 }
+
+export const categories = [
+  { name: 'All', value: 'all' },
+  { name: 'Food', value: 'Food' },
+  { name: 'Heritage', value: 'Heritage' },
+  { name: 'Nature', value: 'Nature' },
+  { name: 'Shopping', value: 'Shopping' },
+  { name: 'Entertainment', value: 'Entertainment' }
+];
 
 export const destinations: Destination[] = [
   // Mumbai
@@ -21,12 +31,13 @@ export const destinations: Destination[] = [
     category: "Heritage",
     rating: 4.6,
     description: "Iconic monument overlooking the Arabian Sea",
-    longDescription: "The Gateway of India is an arch-monument built during the 20th century in Mumbai. It was erected to commemorate the landing of King George V and Queen Mary at Apollo Bunder on their visit to India in 1911.",
+    longDescription: "The Gateway of India is an arch-monument built during the 20th century in Mumbai. It was erected to commemorate the landing of King George V and Queen Mary at Apollo Bunder on their visit to India in 1911. This magnificent structure stands as a symbol of Mumbai's rich colonial history and serves as a popular tourist destination.",
     images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     location: "Apollo Bunder, Colaba",
     city: "mumbai",
     price: "Free",
-    timings: "24 hours"
+    timings: "24 hours",
+    highlights: ["Historic architecture", "Sea views", "Photography spot", "Cultural significance"]
   },
   {
     id: 2,
@@ -34,12 +45,13 @@ export const destinations: Destination[] = [
     category: "Nature",
     rating: 4.5,
     description: "Famous promenade along the coast of Mumbai",
-    longDescription: "Marine Drive is a 3.6-kilometre-long boulevard in South Mumbai. The road was constructed by late Pallonji Mistry. It is a 'C'-shaped six-lane concrete road along the coast, which is a natural bay.",
+    longDescription: "Marine Drive is a 3.6-kilometre-long boulevard in South Mumbai. The road was constructed by late Pallonji Mistry. It is a 'C'-shaped six-lane concrete road along the coast, which is a natural bay. Also known as the Queen's Necklace, it's one of the most visited places in Mumbai.",
     images: ["/placeholder.svg", "/placeholder.svg"],
     location: "South Mumbai",
     city: "mumbai",
     price: "Free",
-    timings: "24 hours"
+    timings: "24 hours",
+    highlights: ["Queen's Necklace view", "Evening walks", "Street food", "Sunset views"]
   },
   // Delhi
   {
@@ -48,12 +60,13 @@ export const destinations: Destination[] = [
     category: "Heritage",
     rating: 4.4,
     description: "Historic fortified palace of the Mughal emperors",
-    longDescription: "The Red Fort is a historic walled city in Delhi, India, which served as the main residence of the Mughal Emperors for nearly 200 years, until 1856.",
+    longDescription: "The Red Fort is a historic walled city in Delhi, India, which served as the main residence of the Mughal Emperors for nearly 200 years, until 1856. It is a UNESCO World Heritage Site and represents the peak of Mughal creativity.",
     images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     location: "Old Delhi",
     city: "delhi",
     price: "₹35",
-    timings: "9:30 AM - 4:30 PM"
+    timings: "9:30 AM - 4:30 PM",
+    highlights: ["Mughal architecture", "Light & sound show", "Museums", "UNESCO World Heritage"]
   },
   {
     id: 4,
@@ -61,12 +74,13 @@ export const destinations: Destination[] = [
     category: "Heritage",
     rating: 4.3,
     description: "War memorial dedicated to Indian soldiers",
-    longDescription: "The India Gate is a war memorial located astride the Rajpath, on the eastern edge of the 'ceremonial axis' of New Delhi, formerly called Kingsway.",
+    longDescription: "The India Gate is a war memorial located astride the Rajpath, on the eastern edge of the 'ceremonial axis' of New Delhi, formerly called Kingsway. It stands as a memorial to 70,000 soldiers of the British Indian Army who died in World War I.",
     images: ["/placeholder.svg", "/placeholder.svg"],
     location: "Rajpath, New Delhi",
     city: "delhi",
     price: "Free",
-    timings: "24 hours"
+    timings: "24 hours",
+    highlights: ["War memorial", "Evening illumination", "Picnic spot", "National significance"]
   },
   // Bangalore
   {
@@ -75,12 +89,13 @@ export const destinations: Destination[] = [
     category: "Nature",
     rating: 4.4,
     description: "Historic botanical garden with diverse flora",
-    longDescription: "Lalbagh or Lalbagh Botanical Gardens is a well known botanical garden in Bengaluru, India. The garden was commissioned by Hyder Ali in 1760 and completed during the reign of Tipu Sultan.",
+    longDescription: "Lalbagh or Lalbagh Botanical Gardens is a well known botanical garden in Bengaluru, India. The garden was commissioned by Hyder Ali in 1760 and completed during the reign of Tipu Sultan. It covers 240 acres and contains over 1,854 species of plants.",
     images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     location: "Mavalli, Bangalore",
     city: "bangalore",
     price: "₹10",
-    timings: "6:00 AM - 7:00 PM"
+    timings: "6:00 AM - 7:00 PM",
+    highlights: ["Glass house", "Rock formations", "Lake", "Rare plants"]
   },
   {
     id: 6,
@@ -88,12 +103,13 @@ export const destinations: Destination[] = [
     category: "Nature",
     rating: 4.2,
     description: "Large park in the heart of Bangalore",
-    longDescription: "Cubbon Park is a landmark 'lung' area of the Bengaluru city, located within the heart of city in the Central Administrative Area.",
+    longDescription: "Cubbon Park is a landmark 'lung' area of the Bengaluru city, located within the heart of city in the Central Administrative Area. It was created in 1870 and covers an area of 300 acres. The park is home to numerous species of flora and fauna.",
     images: ["/placeholder.svg", "/placeholder.svg"],
     location: "Central Bangalore",
     city: "bangalore",
     price: "Free",
-    timings: "6:00 AM - 6:00 PM"
+    timings: "6:00 AM - 6:00 PM",
+    highlights: ["Morning walks", "Joggers track", "Library", "Bandstand"]
   },
   // Jaipur
   {
@@ -102,12 +118,13 @@ export const destinations: Destination[] = [
     category: "Heritage",
     rating: 4.5,
     description: "Palace of Winds with intricate architecture",
-    longDescription: "Hawa Mahal is a palace in the city of Jaipur, India. Built from red and pink sandstone, it is on the edge of the City Palace, Jaipur, and extends to the Zenana, or women's chambers.",
+    longDescription: "Hawa Mahal is a palace in the city of Jaipur, India. Built from red and pink sandstone, it is on the edge of the City Palace, Jaipur, and extends to the Zenana, or women's chambers. The structure was built in 1799 by Maharaja Sawai Pratap Singh.",
     images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     location: "Old City, Jaipur",
     city: "jaipur",
     price: "₹50",
-    timings: "9:00 AM - 4:30 PM"
+    timings: "9:00 AM - 4:30 PM",
+    highlights: ["Unique architecture", "953 windows", "Pink sandstone", "Photography"]
   },
   {
     id: 8,
@@ -115,12 +132,13 @@ export const destinations: Destination[] = [
     category: "Heritage",
     rating: 4.6,
     description: "Majestic fort with stunning architecture",
-    longDescription: "Amer Fort or Amber Fort is a fort located in Amer, Rajasthan, India. Amer is a town with an area of 4 square kilometres located 11 kilometres from Jaipur, the capital of Rajasthan.",
+    longDescription: "Amer Fort or Amber Fort is a fort located in Amer, Rajasthan, India. Amer is a town with an area of 4 square kilometres located 11 kilometres from Jaipur, the capital of Rajasthan. The fort is known for its artistic Hindu style elements.",
     images: ["/placeholder.svg", "/placeholder.svg"],
     location: "Amer, Jaipur",
     city: "jaipur",
     price: "₹100",
-    timings: "8:00 AM - 6:00 PM"
+    timings: "8:00 AM - 6:00 PM",
+    highlights: ["Sheesh Mahal", "Elephant rides", "Light show", "Rajput architecture"]
   },
   // Chennai
   {
@@ -129,12 +147,13 @@ export const destinations: Destination[] = [
     category: "Nature",
     rating: 4.1,
     description: "One of the longest urban beaches in the world",
-    longDescription: "Marina Beach is a natural urban beach in Chennai, Tamil Nadu, India, along the Bay of Bengal. The beach runs from near Fort St. George in the north to Foreshore Estate in the south.",
+    longDescription: "Marina Beach is a natural urban beach in Chennai, Tamil Nadu, India, along the Bay of Bengal. The beach runs from near Fort St. George in the north to Foreshore Estate in the south, a distance of 6.0 km, making it the longest natural urban beach in India.",
     images: ["/placeholder.svg", "/placeholder.svg"],
     location: "Marina, Chennai",
     city: "chennai",
     price: "Free",
-    timings: "24 hours"
+    timings: "24 hours",
+    highlights: ["Longest urban beach", "Horse rides", "Food stalls", "Lighthouse"]
   },
   {
     id: 10,
@@ -142,11 +161,12 @@ export const destinations: Destination[] = [
     category: "Heritage",
     rating: 4.3,
     description: "Ancient temple dedicated to Lord Shiva",
-    longDescription: "Kapaleeshwarar Temple is a Hindu temple dedicated to Shiva located in Mylapore, Chennai in the Indian state of Tamil Nadu.",
+    longDescription: "Kapaleeshwarar Temple is a Hindu temple dedicated to Shiva located in Mylapore, Chennai in the Indian state of Tamil Nadu. The temple was built around the 7th century CE and is an example of Dravidian architecture.",
     images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     location: "Mylapore, Chennai",
     city: "chennai",
     price: "Free",
-    timings: "5:30 AM - 12:00 PM, 4:00 PM - 9:00 PM"
+    timings: "5:30 AM - 12:00 PM, 4:00 PM - 9:00 PM",
+    highlights: ["Dravidian architecture", "Temple tank", "Festivals", "Spiritual significance"]
   }
 ];
