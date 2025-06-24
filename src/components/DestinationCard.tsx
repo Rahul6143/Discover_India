@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
-import { MapPin, Clock, Star, DollarSign, ChevronDown, ChevronUp, Calendar } from 'lucide-react';
-import { Destination } from '../data/mockData';
+import { MapPin, Clock, Star, IndianRupee, ChevronDown, ChevronUp, Calendar } from 'lucide-react';
+import { Destination } from '../data/Data';
 import ImageCarousel from './ImageCarousel';
 
 interface DestinationCardProps {
@@ -61,7 +61,7 @@ const DestinationCard = ({ destination }: DestinationCardProps) => {
           </h3>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1 text-green-600 dark:text-green-400">
-              <DollarSign className="w-4 h-4" />
+              <IndianRupee className="w-4 h-4" />
               <span className="text-sm font-semibold">{destination.price}</span>
             </div>
             <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">

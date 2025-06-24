@@ -1,6 +1,6 @@
 
 import { Filter, Star } from 'lucide-react';
-import { categories } from '../data/mockData';
+import { categories } from '../data/Data';
 
 interface FilterBarProps {
   selectedCategory: string;

@@ -1,7 +1,7 @@
-
 import { MapPin, Search } from 'lucide-react';
 import CitySelector from './CitySelector';
 import ThemeToggle from './ThemeToggle';
+import { useState } from 'react';
 
 interface HeaderProps {
   selectedCity: string;
@@ -9,6 +9,38 @@ interface HeaderProps {
 }
 
 const Header = ({ selectedCity, onCityChange }: HeaderProps) => {
+  const [searchValue, setSearchValue] = useState('');
+  const [notFound, setNotFound] = useState(false);
+
+  // City name to id mapping (should match CitySelector)
+  const cityNameToId: { [key: string]: string } = {
+    hyderabad: 'hyderabad',
+    mumbai: 'mumbai',
+    delhi: 'delhi',
+    bangalore: 'bangalore',
+    chennai: 'chennai',
+    pune: 'pune',
+    jaipur: 'jaipur',
+  };
+
+  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      const input = searchValue.trim().toLowerCase();
+      const foundId = Object.entries(cityNameToId).find(
+        ([, id]) => id === input || input === id || input === id.toLowerCase()
+      ) || Object.entries(cityNameToId).find(
+        ([name]) => name === input
+      );
+      if (foundId) {
+        setNotFound(false);
+        onCityChange(foundId[1]);
+        setSearchValue('');
+      } else {
+        setNotFound(true);
+      }
+    }
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,7 +48,8 @@ const Header = ({ selectedCity, onCityChange }: HeaderProps) => {
           {/* Logo and Title */}
           <div className="flex items-center space-x-4">
             <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-600 rounded-xl shadow-lg">
-              <MapPin className="w-6 h-6 text-white" />
+              {/* <MapPin className="w-6 h-6 text-white" /> */}
+              <img src="/image.png" alt="image" className="w-12 h-12" />
             </div>
             <div>
               <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
@@ -33,8 +66,14 @@ const Header = ({ selectedCity, onCityChange }: HeaderProps) => {
               <input
                 type="text"
                 placeholder="Search destinations..."
-                className="w-full pl-12 pr-4 py-3 border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
+                className={`w-full pl-12 pr-4 py-3 border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 ${notFound ? 'border-red-500' : ''}`}
+                value={searchValue}
+                onChange={e => { setSearchValue(e.target.value); setNotFound(false); }}
+                onKeyDown={handleSearch}
               />
+              {notFound && (
+                <span className="absolute right-4 top-1/2 transform -translate-y-1/2 text-red-500 text-xs">City not found</span>
+              )}
             </div>
           </div>
 

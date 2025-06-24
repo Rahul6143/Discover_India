@@ -13,10 +13,10 @@ const HeroSection = () => {
       </div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+          {/* <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
             <span className="text-2xl">🇮🇳</span>
             <span className="text-sm font-medium text-white/90">Explore India</span>
-          </div>
+          </div> */}
           <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
             Discover
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400">

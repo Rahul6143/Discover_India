@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 
@@ -9,12 +8,11 @@ interface City {
 }
 
 const cities: City[] = [
+  { id: 'hyderabad', name: 'Hyderabad', logo: '💎' },
   { id: 'mumbai', name: 'Mumbai', logo: '🏙️' },
   { id: 'delhi', name: 'Delhi', logo: '🏛️' },
   { id: 'bangalore', name: 'Bangalore', logo: '🌆' },
-  { id: 'kolkata', name: 'Kolkata', logo: '🏗️' },
   { id: 'chennai', name: 'Chennai', logo: '🏖️' },
-  { id: 'hyderabad', name: 'Hyderabad', logo: '💎' },
   { id: 'pune', name: 'Pune', logo: '🎓' },
   { id: 'jaipur', name: 'Jaipur', logo: '👑' }
 ];

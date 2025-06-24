@@ -1,16 +1,17 @@
-
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import Header from '../components/Header';
 import HeroSection from '../components/HeroSection';
 import FilterBar from '../components/FilterBar';
 import DestinationGrid from '../components/DestinationGrid';
 import ScrollToTop from '../components/ScrollToTop';
-import { destinations } from '../data/mockData';
+import { destinations } from '../data/Data';
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedRating, setSelectedRating] = useState(0);
-  const [selectedCity, setSelectedCity] = useState('mumbai');
+  const [selectedCity, setSelectedCity] = useState('hyderabad');
+
+  const gridRef = useRef<HTMLDivElement>(null);
 
   // Filter destinations based on selected criteria
   const filteredDestinations = useMemo(() => {
@@ -27,18 +28,24 @@ const Index = () => {
       mumbai: 'Mumbai',
       delhi: 'Delhi',
       bangalore: 'Bangalore',
-      kolkata: 'Kolkata',
       chennai: 'Chennai',
       hyderabad: 'Hyderabad',
       pune: 'Pune',
       jaipur: 'Jaipur'
     };
-    return cityNames[cityId] || 'Mumbai';
+    return cityNames[cityId] || 'Hyderabad';
+  };
+
+  const handleCityChange = (cityId: string) => {
+    setSelectedCity(cityId);
+    setTimeout(() => {
+      gridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100); // Delay to ensure grid updates
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-indigo-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 transition-colors">
-      <Header selectedCity={selectedCity} onCityChange={setSelectedCity} />
+      <Header selectedCity={selectedCity} onCityChange={handleCityChange} />
       <HeroSection />
       <FilterBar
         selectedCategory={selectedCategory}
@@ -61,7 +68,9 @@ const Index = () => {
           </div>
         </div>
         
-        <DestinationGrid destinations={filteredDestinations} />
+        <div ref={gridRef}>
+          <DestinationGrid destinations={filteredDestinations} />
+        </div>
       </main>
       
       <ScrollToTop />

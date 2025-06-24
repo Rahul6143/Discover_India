@@ -1,5 +1,5 @@
-
-import { Destination } from '../data/mockData';
+import { useState } from 'react';
+import { Destination } from '../data/Data';
 import DestinationCard from './DestinationCard';
 
 interface DestinationGridProps {
@@ -8,6 +8,8 @@ interface DestinationGridProps {
 }
 
 const DestinationGrid = ({ destinations, loading = false }: DestinationGridProps) => {
+  const [showAll, setShowAll] = useState(false);
+
   if (loading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -35,12 +37,26 @@ const DestinationGrid = ({ destinations, loading = false }: DestinationGridProps
     );
   }
 
+  const visibleDestinations = showAll ? destinations : destinations.slice(0, 3);
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {destinations.map((destination) => (
-        <DestinationCard key={destination.id} destination={destination} />
-      ))}
-    </div>
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {visibleDestinations.map((destination) => (
+          <DestinationCard key={destination.id} destination={destination} />
+        ))}
+      </div>
+      {destinations.length > 3 && (
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={() => setShowAll((prev) => !prev)}
+            className="px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+          >
+            {showAll ? 'Show Less' : `Show More`}
+          </button>
+        </div>
+      )}
+    </>
   );
 };
 
