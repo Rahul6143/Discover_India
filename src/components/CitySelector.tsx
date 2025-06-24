@@ -17,6 +17,16 @@ const cities: City[] = [
   { id: 'jaipur', name: 'Jaipur', logo: '👑' }
 ];
 
+const cityTags: { [key: string]: string } = {
+  jaipur: 'Pink City',
+  bangalore: 'Green City',
+  hyderabad: 'City of Pearls',
+  mumbai: 'City of Dreams',
+  delhi: 'City of Rallies',
+  chennai: 'Detroit of India',
+  pune: 'Oxford of the East',
+};
+
 interface CitySelectorProps {
   selectedCity: string;
   onCityChange: (cityId: string) => void;
@@ -81,7 +91,7 @@ const CitySelector = ({ selectedCity, onCityChange }: CitySelectorProps) => {
                   <div className={`text-xs ${
                     city.id === selectedCity ? 'text-indigo-100' : 'text-gray-500 dark:text-gray-400'
                   }`}>
-                    Explore destinations
+                    {cityTags[city.id]}
                   </div>
                 </div>
               </button>
